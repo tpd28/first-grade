@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Запис дитини до 1 класу за запрошенням — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0068FF;--ink:#1B2430;--grey:#5B6675;--line:#D5DCE6;--soft:#F4F6F9;--green:#16775A;--yellow:#FFF3D4;--lblue:#EAF2FF}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#E9EDF2}
+a{color:var(--blue)}
+button{font-family:inherit}
+/* desktop: phone frame; phone: full screen */
+.stage{min-height:100%;display:flex;gap:40px;align-items:flex-start;justify-content:center;padding:32px 16px}
+.side{width:320px;flex:none}
+.phone{width:390px;height:844px;flex:none;background:#fff;border-radius:44px;border:10px solid #10151C;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.screen{position:absolute;inset:0;overflow-y:auto;display:none;background:#fff;-webkit-overflow-scrolling:touch}
+.screen.on{display:block}
+@media (max-width:760px){
+ .stage{padding:0;display:block}
+ .side{display:none}
+ .phone{width:100%;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none}
+ .scenbtn{display:flex!important}
+}
+.side h1{font-family:Montserrat,Inter,sans-serif;font-size:22px;line-height:28px;margin:0 0 8px}
+.side p{font-size:14px;line-height:20px;color:var(--grey);margin:0 0 20px}
+.scen{display:flex;flex-direction:column;gap:10px}
+.scen button{text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14px;line-height:20px;color:var(--ink)}
+.scen button b{display:block;font-size:15px;margin-bottom:2px}
+.scen button.act{border-color:var(--blue);box-shadow:0 0 0 2px var(--lblue)}
+.scen .note{font-size:13px;line-height:18px;color:var(--grey);background:#fff;border-radius:10px;padding:12px 14px;border:1px dashed var(--line)}
+.scenbtn{display:none;position:fixed;right:12px;bottom:12px;z-index:50;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:0;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.sheet{position:fixed;inset:0;background:rgba(16,21,28,.55);z-index:60;display:none;align-items:flex-end}
+.sheet.on{display:flex}
+.sheet .in{background:#F4F6F9;width:100%;max-height:85vh;overflow:auto;border-radius:16px 16px 0 0;padding:20px}
+
+/* lock screen */
+#lock{background:#26313F;color:#fff;text-align:center;padding:90px 12px 0}
+#lock .d{font-size:17px;opacity:.85}
+#lock .t{font-size:76px;font-weight:300;line-height:84px;margin-bottom:170px}
+.notif{display:flex;gap:12px;text-align:left;background:rgba(255,255,255,.93);color:var(--ink);border-radius:22px;padding:14px 16px;cursor:pointer;border:0;width:100%;font:inherit}
+.appic{width:38px;height:38px;border-radius:9px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex:none}
+.notif .h{display:flex;justify-content:space-between;font-size:13px;color:var(--grey)}
+.notif .tt{font-size:15px;font-weight:600;margin:2px 0}
+.notif .b{font-size:15px;line-height:20px}
+.hint{margin-top:24px;font-size:13px;opacity:.7}
+
+/* KC app */
+.kbar{display:flex;align-items:center;gap:6px;padding:14px 10px;border-bottom:1px solid #EEF1F5;position:sticky;top:0;background:#fff;z-index:2}
+.iconbtn{width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:8px}
+.kbar span{font-size:17px;font-weight:600}
+.kbody{padding:20px;display:flex;flex-direction:column;gap:18px}
+.tag{align-self:flex-start;font-size:12px;font-weight:600;color:var(--blue);background:var(--lblue);padding:4px 10px;border-radius:12px}
+.h1m{margin:0;font-family:Montserrat,Inter,sans-serif;font-size:24px;line-height:30px;font-weight:800}
+.p{margin:0;font-size:15px;line-height:22px}
+.need{display:flex;gap:12px;align-items:center;font-size:15px}
+.kfoot{padding:12px 20px 28px;border-top:1px solid #EEF1F5;position:sticky;bottom:0;background:#fff}
+.kbtn{display:flex;width:100%;align-items:center;justify-content:center;min-height:50px;background:var(--blue);color:#fff;border-radius:10px;font-size:16px;font-weight:600;border:0;cursor:pointer}
+
+/* portal mobile */
+.phead{background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 16px;position:sticky;top:0;z-index:3}
+.logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;line-height:15px;letter-spacing:.02em}
+.logo small{display:block;font-size:8px;font-weight:500;letter-spacing:.12em}
+.pmain{padding:16px 16px 32px}
+.crumb{font-size:12px;color:var(--grey);margin-bottom:12px}
+.ptitle{margin:0 0 20px;font-family:Montserrat,Inter,sans-serif;font-size:22px;line-height:28px;font-weight:800}
+.stepper{display:flex;align-items:flex-start;margin:0 0 28px}
+.st{display:flex;flex-direction:column;align-items:center;gap:6px;width:92px;text-align:center;font-size:12px;line-height:15px;color:var(--grey)}
+.st i{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;border:1px solid #9AA5B4}
+.st.cur{color:var(--ink)} .st.cur i{border:2px solid var(--blue);color:var(--blue);font-weight:600}
+.st.done i{background:var(--green);border-color:var(--green)}
+.sl{flex:1;height:1px;background:var(--line);margin-top:14px}
+.form{display:flex;flex-direction:column;gap:24px}
+.h2{margin:0;font-size:19px;font-weight:700}
+.h3{font-size:16px;font-weight:700}
+.ban{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:4px;font-size:13px;line-height:20px}
+.ban.y{background:var(--yellow)} .ban.b{background:var(--lblue)}
+.card{border:1px solid #E3E8EF;border-radius:8px;padding:2px 16px}
+.row{padding:12px 0;border-top:1px solid #EEF1F5;display:flex;flex-direction:column;gap:2px}
+.row:first-child{border-top:0}
+.row span{font-size:12px;color:var(--grey)} .row b{font-size:14px;font-weight:500}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--grey)}
+.fld input,.fld select{border:0;border-bottom:1px solid #9AA5B4;border-radius:0;padding:7px 0;font:inherit;font-size:16px;color:var(--ink);background:transparent;width:100%}
+.fld input:focus,.fld select:focus{outline:0;border-bottom:2px solid var(--blue)}
+.fld.err input,.fld.err select{border-bottom-color:#C62828}
+.fld .e{color:#C62828;font-size:12px;display:none} .fld.err .e{display:block}
+.g3{display:grid;grid-template-columns:70px 1fr 80px;gap:16px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.chk,.rad{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:21px;cursor:pointer}
+.chk input,.rad input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--blue)}
+.rad small{display:block;font-size:13px;line-height:18px;color:var(--grey);margin-top:2px}
+.up{border:1px dashed #9AA5B4;border-radius:8px;padding:20px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:13px;color:var(--grey);cursor:pointer;background:#fff;width:100%;font-family:inherit}
+.up .l{color:var(--blue);text-decoration:underline;font-size:14px}
+.file{display:flex;align-items:center;gap:10px;border:1px solid #E3E8EF;border-radius:8px;padding:12px;font-size:14px}
+.file span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.diia{background:var(--soft);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:20px}
+.bdiia{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;background:#000;color:#fff;border-radius:6px;font-size:14px;font-weight:600;border:0;cursor:pointer}
+.sep{border-top:1px solid #EEF1F5;padding-top:24px;display:flex;flex-direction:column;gap:16px}
+.btns{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.bp,.bs{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
+.bp{background:var(--blue);color:#fff;border:0} .bs{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.bp[disabled]{background:#B7C0CC;cursor:default}
+.ok{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--green)}
+/* modal */
+.modal{position:absolute;inset:0;background:rgba(20,28,40,.55);display:none;align-items:flex-end;z-index:10}
+.modal.on{display:flex}
+.modal .box{background:#fff;width:100%;border-radius:16px 16px 0 0;padding:22px 18px 28px;display:flex;flex-direction:column;gap:18px}
+.tabs{display:flex;border-bottom:1px solid #E3E8EF;overflow-x:auto}
+.tabs button{padding:10px 12px;font-size:14px;border:0;background:none;color:var(--grey);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--blue);font-weight:600;border-bottom-color:var(--blue)}
+/* Diia app */
+.diiascr{background:#E6F0F2;min-height:100%;display:flex;flex-direction:column}
+.diiatop{padding:22px 20px 10px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.diiacard{margin:12px 16px;background:#fff;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.diiabtn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:40px;background:#000;color:#fff;font-size:16px;font-weight:600;border:0;cursor:pointer;width:100%}
+.diiabtn.o{background:transparent;color:#000;border:1px solid #000}
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:48px 20px}
+.circle{width:64px;height:64px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center}
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;height:100%;color:var(--grey);font-size:14px}
+.spin{width:36px;height:36px;border-radius:50%;border:3px solid var(--lblue);border-top-color:var(--blue);animation:r 0.8s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="stage">
+ <div class="side">
+  <h1>Запис дитини до 1 класу за запрошенням</h1>
+  <p>Клікабельний прототип. Увесь процес відбувається в телефоні: пуш у Київ Цифровому → заява на Порталі послуг → підпис через Дію.</p>
+  <div class="scen" id="scenList"></div>
+ </div>
+ <div class="phone" id="phone">
+
+ <!-- LOCK SCREEN -->
+ <section class="screen" id="lock">
+  <div class="d">четвер, 2 квітня</div>
+  <div class="t">9:41</div>
+  <button class="notif" onclick="go('kc')">
+   <span class="appic"><svg width="20" height="23" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#0068FF"/></svg></span>
+   <span style="flex:1;min-width:0"><span class="h"><span>КИЇВ ЦИФРОВИЙ</span><span>зараз</span></span>
+   <span class="tt" style="display:block">Марко скоро йде до школи</span>
+   <span class="b" style="display:block">Ми підібрали школу за місцем реєстрації Марка, де він має право на першочергове зарахування. Подайте заяву за кілька хвилин.</span></span>
+  </button>
+  <div class="hint">Натисніть на сповіщення</div>
+ </section>
+
+ <!-- KC OFFER -->
+ <section class="screen" id="kc">
+  <div style="min-height:100%;display:flex;flex-direction:column">
+  <div class="kbar"><button class="iconbtn" aria-label="Назад" onclick="go('lock')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span>Сповіщення</span></div>
+  <div class="kbody" style="flex:1">
+   <span class="tag">Освіта</span>
+   <h1 class="h1m">Марко скоро йде до першого класу</h1>
+   <p class="p">Ми підібрали для Марка школу за його зареєстрованим місцем проживання. Тут він має право на першочергове зарахування. Погодьтеся, щоб переглянути школу та подати заяву.</p>
+   <div class="h3">Що знадобиться</div>
+   <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg>Свідоцтво про народження дитини</div>
+   <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg>Медична довідка за формою № 086/о</div>
+   <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/></svg>Дія.Підпис або електронний підпис</div>
+   <p class="p" style="font-size:13px;color:var(--grey)">Заяви на першочергове зарахування приймають до 1 червня.</p>
+  </div>
+  <div class="kfoot"><button class="kbtn" onclick="openPortal()">Погоджуюсь</button></div>
+  </div>
+ </section>
+
+ <!-- LOADER -->
+ <section class="screen" id="load"><div class="loader"><div class="spin"></div>Відкриваємо заяву…</div></section>
+
+ <!-- PORTAL: STEP SCHOOL (child / parent / duplicate) -->
+ <section class="screen" id="school">
+  <div class="phead"></div>
+  <div class="pmain">
+   <div class="crumb">Мої послуги / Запис дитини до 1 класу школи</div>
+   <h1 class="ptitle">Запис дитини до 1 класу школи</h1>
+   <div class="stepper" data-steps="Заклад освіти|Відомості про дитину" data-cur="1"></div>
+   <div class="form">
+    <h2 class="h2">Заклад освіти</h2>
+    <div id="schoolBanner"></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div class="h3" style="font-size:15px">Підібрана школа</div>
+     <div class="card" id="schoolCard"></div></div>
+    <div class="sep" id="altBlock">
+     <div class="h3" style="font-size:15px">Школа не підходить?</div>
+     <label class="rad" id="optParentWrap"><input type="radio" name="alt" value="parent" onchange="altPick()"><span>Підібрати школу за моїм зареєстрованим місцем проживання<small>Підберемо школу, яка обслуговує адресу, де зареєстровані ви</small></span></label>
+     <label class="rad"><input type="radio" name="alt" value="other" onchange="altPick()"><span>Обрати іншу школу<small>Вкажете адресу та оберете школу самостійно</small></span></label>
+    </div>
+    <div class="btns"><button class="bp" id="schoolNext" onclick="schoolNext()">Далі</button></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- PORTAL: ADDRESS (other school) -->
+ <section class="screen" id="addr">
+  <div class="phead"></div>
+  <div class="pmain">
+   <div class="crumb">Мої послуги / Запис дитини до 1 класу школи</div>
+   <h1 class="ptitle">Запис дитини до 1 класу школи</h1>
+   <div class="stepper" data-steps="Місце проживання|Заклад освіти|Відомості про дитину" data-cur="1"></div>
+   <div class="form">
+    <h2 class="h2">Місце проживання</h2>
+    <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Інформація про місце проживання має бути актуальною на момент подання заяви. Діти, які проживають на території обслуговування школи, мають право на першочергове зарахування. Підтвердити це можна зареєстрованим або фактичним місцем проживання дитини чи заявника.</span></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+     <div style="font-size:15px;line-height:22px">За яким типом адреси підтвердити проживання за територією обслуговування школи?</div>
+     <label class="rad"><input type="radio" name="atype" value="child" checked onchange="addrType()"><span>За зареєстрованим місцем проживання дитини в м. Київ</span></label>
+     <label class="rad"><input type="radio" name="atype" value="parent" onchange="addrType()"><span>За зареєстрованим місцем проживання заявника в м. Київ</span></label>
+     <label class="rad"><input type="radio" name="atype" value="fact" onchange="addrType()"><span>За фактичним місцем проживання заявника та дитини в м. Київ</span></label>
+     <label class="rad"><input type="radio" name="atype" value="out" onchange="addrType()"><span>Місце проживання поза межами території обслуговування</span></label>
+    </div>
+    <div id="addrFields" style="display:flex;flex-direction:column;gap:20px">
+     <div class="h3" id="addrTitle">Зареєстроване місце проживання дитини в м. Київ</div>
+     <label class="fld">Вулиця<select><option>вул. Київська</option><option>просп. Перемоги</option><option>вул. Хрещатик</option></select></label>
+     <div class="g2"><label class="fld">Будинок<input value="12"></label><label class="fld">Квартира<input value="34"></label></div>
+     <div id="factDoc" style="display:none"><div style="font-size:15px;font-weight:600;margin-bottom:8px">Документ, що підтверджує місце проживання</div><div class="upz"></div></div>
+    </div>
+    <div class="btns"><button class="bp" onclick="go('pick')">Далі</button><button class="bs" onclick="go('school')">Назад</button></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- PORTAL: PICK SCHOOL -->
+ <section class="screen" id="pick">
+  <div class="phead"></div>
+  <div class="pmain">
+   <div class="crumb">Мої послуги / Запис дитини до 1 класу школи</div>
+   <h1 class="ptitle">Запис дитини до 1 класу школи</h1>
+   <div class="stepper" data-steps="Місце проживання|Заклад освіти|Відомості про дитину" data-cur="2"></div>
+   <div class="form">
+    <h2 class="h2">Заклад освіти</h2>
+    <label class="fld">Тип класу<select><option>Звичайний</option><option>Спеціальний</option><option>Інклюзивний</option><option>Дистанційний</option><option>Поглиблене вивчення предметів</option></select></label>
+    <div class="ban b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Тип класу підставлено за даними дитячого садочка.</span></div>
+    <label class="fld" id="pickF">Виберіть школу<select id="pickSel" onchange="pickCheck()"><option value="">Виберіть школу</option><option value="dup">Ліцей № 1 (заяву на дитину вже подано)</option><option value="a">Гімназія № 2</option><option value="b">Ліцей № 3</option></select><span class="e" id="pickErr">Оберіть школу</span></label>
+    <label class="chk"><input type="checkbox"><span>Вибрати школи поза межами території обслуговування</span></label>
+    <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Ви можете ознайомитись з <a href="#" onclick="return false">мапою комунальних закладів загальної середньої освіти м. Києва</a>. Щоб переглянути інформацію про заклад, натисніть на його позначку на мапі.</span></div>
+    <div class="btns"><button class="bp" onclick="pickNext()">Далі</button><button class="bs" onclick="go('addr')">Назад</button></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- PORTAL: CHILD -->
+ <section class="screen" id="child">
+  <div class="phead"></div>
+  <div class="pmain">
+   <div class="crumb">Мої послуги / Запис дитини до 1 класу школи</div>
+   <h1 class="ptitle">Запис дитини до 1 класу школи</h1>
+   <div class="stepper" id="childStepper"></div>
+   <div class="form">
+    <h2 class="h2">Відомості про дитину</h2>
+    <div class="ban b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Дані дитини ми отримали від дитячого садочка. Перевірте їх і, якщо щось не так, виправте.</span></div>
+    <label class="fld">Прізвище<input value="Руденко"></label>
+    <label class="fld">Ім'я<input value="Марко"></label>
+    <label class="fld" id="patrF">По батькові<input value="Олегович"></label>
+    <label class="chk"><input type="checkbox" onchange="document.getElementById('patrF').style.display=this.checked?'none':''"><span>Немає по батькові</span></label>
+    <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:600">Дата народження</div>
+     <div class="g3"><label class="fld">День<input value="14" inputmode="numeric"></label><label class="fld">Місяць<select class="months" data-sel="березня"></select></label><label class="fld">Рік<input value="2019" inputmode="numeric"></label></div></div>
+
+    <div class="sep">
+     <div class="h3" style="font-size:17px">Свідоцтво про народження</div>
+     <div id="certDiia" class="diia"><span>Свідоцтво можна отримати з Дії — тоді дані заповняться самі й файл додавати не потрібно.</span><button class="bdiia" onclick="go('diiaShare')">Поділитись документами через Дію</button></div>
+     <div id="certOk" class="ok" style="display:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16775A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Свідоцтво отримано з Дії</div>
+     <span id="certOr" style="font-size:13px;color:var(--grey)">Або заповніть дані самостійно</span>
+     <div class="g2"><label class="fld" id="serF">Серія<input id="ser" placeholder="I-ТВ"><span class="e">Вкажіть серію</span></label><label class="fld" id="numF">Номер<input id="num" placeholder="123456" inputmode="numeric"><span class="e">Вкажіть номер</span></label></div>
+     <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:600">Дата видачі</div>
+      <div class="g3"><label class="fld">День<input id="cd" inputmode="numeric"></label><label class="fld">Місяць<select class="months" id="cm" data-sel=""></select></label><label class="fld">Рік<input id="cy" inputmode="numeric"></label></div></div>
+     <div id="certUpWrap"><div style="font-size:15px;font-weight:600;margin-bottom:8px">Копія свідоцтва про народження</div><div class="upz" id="upCert"></div></div>
+    </div>
+
+    <div class="sep">
+     <div class="h3" style="font-size:17px">Медична довідка</div>
+     <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Довідку за формою № 086/о видає сімейний лікар або педіатр. Сфотографуйте її або завантажте скан, на якому добре видно всі дані.</span></div>
+     <div><div style="font-size:15px;font-weight:600;margin-bottom:8px">Медична довідка за формою № 086/о</div><div class="upz" id="upMed"></div></div>
+    </div>
+    <div class="ban y" id="childErr" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Заповніть усі обов'язкові поля та додайте документи.</span></div>
+    <div class="btns"><button class="bp" onclick="childNext()">Сформувати документ</button><button class="bs" onclick="childBack()">Назад</button></div>
+   </div>
+  </div>
+  <div class="modal" id="signModal"><div class="box" role="dialog" aria-label="Підписання">
+   <div style="font-size:18px;font-weight:600">Будь ласка, підпишіть документ</div>
+   <div class="tabs"><button onclick="signTab(0)">Файловий ключ</button><button onclick="signTab(1)">Апаратний ключ</button><button class="on" onclick="signTab(2)">Дія.Підпис</button></div>
+   <div id="signT0" style="display:none;flex-direction:column;gap:14px"><button class="up" onclick="this.querySelector('.l').textContent='Key-6.dat'"><span class="l">Оберіть файл ключа на своєму носії</span><span>Підтримуються формати: .jks, .pfx, .pk8, .zs2, .dat</span></button><label class="fld">Пароль<input type="password" value="12345678"></label></div>
+   <div id="signT1" style="display:none;font-size:14px;line-height:20px;color:var(--grey)">Підключіть апаратний ключ до телефона, щоб продовжити.</div>
+   <div id="signT2" style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:20px">Відкриється застосунок Дія. Підтвердіть підписання заяви і поверніться сюди.</div>
+   <div class="btns" style="margin:0"><button class="bp" onclick="doSign()">Підписати</button><button class="bs" onclick="closeSign()">Скасувати</button></div>
+  </div></div>
+ </section>
+
+ <!-- DIIA: share -->
+ <section class="screen" id="diiaShare"><div class="diiascr">
+  <div class="diiatop"><span>Дія</span><span style="font-size:13px;font-weight:500">Запит на документи</span></div>
+  <div class="diiacard">
+   <div style="font-size:20px;font-weight:700;line-height:26px">Портал послуг Києва запитує ваші документи</div>
+   <div style="font-size:15px;line-height:22px">Свідоцтво про народження дитини<br><b>Руденко Марко Олегович</b></div>
+   <div style="font-size:13px;color:#555;line-height:18px">Мета: запис дитини до 1 класу школи</div>
+  </div>
+  <div style="margin-top:auto;padding:16px;display:flex;flex-direction:column;gap:10px">
+   <button class="diiabtn" onclick="diiaShared()">Поділитися</button>
+   <button class="diiabtn o" onclick="go('child')">Відмовитися</button>
+  </div></div></section>
+
+ <!-- DIIA: sign -->
+ <section class="screen" id="diiaSign"><div class="diiascr">
+  <div class="diiatop"><span>Дія</span><span style="font-size:13px;font-weight:500">Дія.Підпис</span></div>
+  <div class="diiacard">
+   <div style="font-size:20px;font-weight:700;line-height:26px">Підписати документ</div>
+   <div style="font-size:15px;line-height:22px">Заява про зарахування дитини до 1 класу<br><span style="color:#555;font-size:13px">Портал послуг Києва</span></div>
+  </div>
+  <div style="margin-top:auto;padding:16px;display:flex;flex-direction:column;gap:10px">
+   <button class="diiabtn" onclick="go('load2');setTimeout(()=>go('done'),900)">Підписати</button>
+   <button class="diiabtn o" onclick="go('child')">Скасувати</button>
+  </div></div></section>
+ <section class="screen" id="load2"><div class="loader"><div class="spin"></div>Надсилаємо заяву…</div></section>
+
+ <!-- DONE -->
+ <section class="screen" id="done">
+  <div class="phead"></div>
+  <div class="done">
+   <div class="circle"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></div>
+   <h1 class="h1m">Вашу заяву надіслано</h1>
+   <p class="p" style="color:var(--grey)">Заяву передано до школи. Результат розгляду надійде в застосунок Київ Цифровий, на електронну пошту та в особистий кабінет.</p>
+   <div class="card" style="width:100%;text-align:left"><div class="row"><span>Заклад освіти</span><b id="doneSchool">[Назва закладу освіти]</b></div><div class="row"><span>Дитина</span><b>Руденко Марко Олегович</b></div><div class="row"><span>Статус</span><b>Подано</b></div></div>
+   <button class="bp" onclick="restart()">До замовлених послуг</button>
+  </div>
+ </section>
+
+ </div>
+</div>
+<button class="scenbtn" aria-label="Сценарії" onclick="document.getElementById('sheet').classList.add('on')">☰</button>
+<div class="sheet" id="sheet" onclick="if(event.target===this)this.classList.remove('on')"><div class="in"><div style="font-weight:700;margin-bottom:12px">Сценарії</div><div class="scen" id="scenList2"></div></div></div>
+
+<script>
+const SCEN=[
+ {id:'main',t:'1. Основний',d:'Погоджуюсь → школа за реєстрацією дитини підходить → відомості про дитину → підпис'},
+ {id:'parent',t:'2. Школа за реєстрацією заявника',d:'Школа не підходить → підібрати за моїм зареєстрованим місцем проживання'},
+ {id:'other',t:'3. Інша школа',d:'Школа не підходить → обрати іншу → місце проживання → вибір школи'},
+ {id:'dup',t:'4. Другий з батьків, заява вже є',d:'До підібраної школи вже подано заяву на дитину: можна обрати лише іншу'},
+ {id:'incl',t:'5. Інклюзивний клас',d:'Садочок передав ознаку інклюзії — підібрано школу з інклюзивним класом'}
+];
+const NOTE='Батьків не знайдено в Київ Цифровому за телефоном — пуш не надсилаємо, у прототипі цього сценарію немає.';
+let S={scen:'main',school:'child',flow:'main',diia:false,files:{}};
+const LOGO='<div class="logo"><svg width="26" height="30" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#0068FF"/></svg><div>ПОРТАЛ ПОСЛУГ<small>KYIV DIGITAL</small></div></div><button class="iconbtn" aria-label="Меню"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>';
+document.querySelectorAll('.phead').forEach(h=>h.innerHTML=LOGO);
+const M=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
+document.querySelectorAll('select.months').forEach(s=>{s.innerHTML='<option value=""></option>'+M.map(m=>`<option${m===s.dataset.sel?' selected':''}>${m}</option>`).join('')});
+const ICON_I=c=>`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>`;
+function stepper(el,steps,cur){
+ el.innerHTML=steps.map((s,i)=>{const n=i+1;const cls=n<cur?'done':n===cur?'cur':'';
+  const inner=n<cur?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>':n;
+  return `<div class="st ${cls}"><i>${inner}</i>${s}</div>`+(i<steps.length-1?'<div class="sl"></div>':'')}).join('');
+}
+document.querySelectorAll('.stepper[data-steps]').forEach(e=>stepper(e,e.dataset.steps.split('|'),+e.dataset.cur));
+// upload zones
+function upz(el,key){
+ const render=()=>{const f=S.files[key];
+  el.innerHTML=f?`<div class="file"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg><span>${f}</span><button class="iconbtn" aria-label="Видалити файл" style="width:36px;height:36px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6675" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></div>`
+  :`<button class="up"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v6"/><path d="M9 15h6"/></svg><span class="l">Сфотографуйте або завантажте файл</span><span>Максимальний розмір одного файлу: 1,0 МБ</span><span>Допустимі формати: JPG, PNG, PDF</span></button>`;
+  const b=el.querySelector('button');b.onclick=()=>{S.files[key]=f?null:({cert:'Свідоцтво.jpg',med:'Довідка_086о.jpg',fact:'Договір_оренди.pdf'}[key]);render()}};
+ render();el._r=render;
+}
+upz(document.getElementById('upCert'),'cert');upz(document.getElementById('upMed'),'med');upz(document.querySelector('#factDoc .upz'),'fact');
+
+let cur='lock';
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));cur=id;const s=document.getElementById(id);s.scrollTop=0;if(id==='school')renderSchool();if(id==='child')renderChild();}
+function openPortal(){go('load');setTimeout(()=>{S.school=S.scen==='dup'?'dup':'child';go('school')},900)}
+
+function renderSchool(){
+ const v=S.school, incl=S.scen==='incl';
+ const banners={
+  child:['y','Ми підібрали школу за зареєстрованим місцем проживання дитини. Вона обслуговує цю територію, тому дитина має право на першочергове зарахування.'],
+  parent:['y','Ми підібрали школу за вашим зареєстрованим місцем проживання. Вона обслуговує цю територію, тому дитина має право на першочергове зарахування.'],
+  dup:['y','На дитину вже подано заяву до цієї школи. Повторно подати заяву до тієї самої школи не можна, але можна обрати іншу.']};
+ const [k,t]=banners[v];
+ document.getElementById('schoolBanner').innerHTML=`<div class="ban ${k}">${ICON_I('#9A5B00')}<span>${t}</span></div>`;
+ const name=v==='parent'?'Гімназія № 2':'Ліцей № 1';
+ const rows=[['Заклад освіти',name],['Адреса закладу',v==='parent'?'просп. Перемоги, 20':'вул. Київська, 5'],['Тип класу',incl?'Інклюзивний':'Звичайний'],
+  ['Підстава для першочергового зарахування',v==='parent'?'Заявник зареєстрований на території обслуговування школи':'Дитина зареєстрована на території обслуговування школи'],
+  [v==='parent'?'Зареєстроване місце проживання заявника':'Зареєстроване місце проживання дитини',v==='parent'?'просп. Перемоги, 44, кв. 7':'вул. Київська, 12, кв. 34']];
+ document.getElementById('schoolCard').innerHTML=rows.map(r=>`<div class="row"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');
+ document.getElementById('optParentWrap').style.display=v==='parent'?'none':'';
+ document.querySelectorAll('input[name=alt]').forEach(i=>i.checked=false);
+ S.schoolName=name;altPick();
+}
+function altPick(){const c=document.querySelector('input[name=alt]:checked');const b=document.getElementById('schoolNext');b.disabled=S.school==='dup'&&!c;}
+function schoolNext(){
+ const c=document.querySelector('input[name=alt]:checked');
+ if(c&&c.value==='parent'){go('load');setTimeout(()=>{S.school='parent';go('school')},700);return}
+ if(c&&c.value==='other'){S.flow='other';go('addr');return}
+ S.flow='main';go('child');
+}
+function addrType(){const v=document.querySelector('input[name=atype]:checked').value;
+ const t={child:'Зареєстроване місце проживання дитини в м. Київ',parent:'Зареєстроване місце проживання заявника в м. Київ',fact:'Фактичне місце проживання заявника та дитини в м. Київ',out:'Місце проживання'}[v];
+ document.getElementById('addrTitle').textContent=t;document.getElementById('factDoc').style.display=v==='fact'?'':'none';}
+function pickCheck(){const f=document.getElementById('pickF');f.classList.remove('err')}
+function pickNext(){const v=document.getElementById('pickSel').value,f=document.getElementById('pickF'),e=document.getElementById('pickErr');
+ if(!v){e.textContent='Оберіть школу';f.classList.add('err');return}
+ if(v==='dup'){e.textContent='На дитину вже подано заяву до цієї школи. Оберіть іншу школу.';f.classList.add('err');return}
+ S.schoolName=document.getElementById('pickSel').selectedOptions[0].text;go('child')}
+function renderChild(){
+ const el=document.getElementById('childStepper');
+ if(S.flow==='other')stepper(el,['Місце проживання','Заклад освіти','Відомості про дитину'],3);else stepper(el,['Заклад освіти','Відомості про дитину'],2);
+ const d=S.diia;
+ document.getElementById('certDiia').style.display=d?'none':'';document.getElementById('certOk').style.display=d?'':'none';
+ document.getElementById('certOr').style.display=d?'none':'';document.getElementById('certUpWrap').style.display=d?'none':'';
+ if(d){ser.value='I-ТВ';num.value='482915';cd.value='22';cm.value='березня';cy.value='2019';}
+}
+function childBack(){go(S.flow==='other'?'pick':'school')}
+function diiaShared(){S.diia=true;go('child')}
+function childNext(){
+ let ok=true;[['serF','ser'],['numF','num']].forEach(([f,i])=>{const bad=!document.getElementById(i).value.trim();document.getElementById(f).classList.toggle('err',bad);if(bad)ok=false});
+ if(!S.diia&&!S.files.cert)ok=false; if(!S.files.med)ok=false;
+ document.getElementById('childErr').style.display=ok?'none':'flex';
+ if(ok)document.getElementById('signModal').classList.add('on');
+}
+let tab=2;
+function signTab(n){tab=n;document.querySelectorAll('.tabs button').forEach((b,i)=>b.classList.toggle('on',i===n));[0,1,2].forEach(i=>document.getElementById('signT'+i).style.display=i===n?'flex':'none')}
+function closeSign(){document.getElementById('signModal').classList.remove('on')}
+function doSign(){closeSign();document.getElementById('doneSchool').textContent=S.schoolName;
+ if(tab===2)go('diiaSign');else{go('load2');setTimeout(()=>go('done'),900)}}
+function reset(){S={scen:S.scen,school:'child',flow:'main',diia:false,files:{}};
+ document.querySelectorAll('#child input:not([type=checkbox])').forEach(i=>{if(['ser','num','cd','cy'].includes(i.id))i.value=''});
+ cm.value='';document.querySelectorAll('.upz').forEach(z=>z._r&&z._r());document.getElementById('childErr').style.display='none';
+ document.querySelectorAll('.fld.err').forEach(f=>f.classList.remove('err'));document.getElementById('pickSel').value='';signTab(2);}
+function start(id){S.scen=id;reset();go('lock');document.getElementById('sheet').classList.remove('on');
+ document.querySelectorAll('.scen button').forEach(b=>b.classList.toggle('act',b.dataset.id===id));
+ const n=document.getElementById('phone');}
+function restart(){start(S.scen)}
+['scenList','scenList2'].forEach(id=>{document.getElementById(id).innerHTML=SCEN.map(s=>`<button data-id="${s.id}" onclick="start('${s.id}')"><b>${s.t}</b>${s.d}</button>`).join('')+`<div class="note">${NOTE}</div>`});
+start('main');
+</script>
+</body>
+</html>
