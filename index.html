@@ -98,7 +98,24 @@ button{font-family:inherit}
 .diia{background:var(--soft);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:20px}
 .bdiia{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;background:#000;color:#fff;border-radius:6px;font-size:14px;font-weight:600;border:0;cursor:pointer}
 .sep{border-top:1px solid #EEF1F5;padding-top:24px;display:flex;flex-direction:column;gap:16px}
-.btns{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.btns{display:flex;flex-direction:row-reverse;gap:12px;margin-top:8px}.btns>*{flex:1}.btns.stack{flex-direction:column}
+.pfoot{background:#1A2540;color:#fff;padding:28px 16px 36px;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:24px}.pfoot a{color:#fff;text-decoration:none;font-family:Montserrat,Inter,sans-serif;font-weight:700;font-size:20px}
+.upbox{border:2px dashed #B7C0CC;border-radius:4px;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-size:14px;color:var(--grey);background:#fff}
+.upbox .lnk{color:var(--blue);text-decoration:underline;font-size:16px;background:none;border:0;cursor:pointer;font-family:inherit;padding:0}
+.upbox .drag{color:var(--ink);font-size:15px}
+.uptools{display:flex;gap:10px;align-self:flex-start;margin-top:8px}.uptools span{width:44px;height:40px;border-radius:8px;background:#EEF4FF;display:flex;align-items:center;justify-content:center}
+.uptbl{align-self:stretch;text-align:left;font-size:14px;color:var(--ink)}.uptbl div{display:flex;align-items:center;gap:12px;padding:12px 4px;border-top:1px solid #E3E8EF}.uptbl div:last-child{border-bottom:1px solid #E3E8EF}.uptbl input{width:20px;height:20px;margin:0}.uptbl .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uplabel{font-size:15px;margin-bottom:10px;color:var(--ink)}.reqerr{color:#C62828;font-size:13px;margin-top:6px;display:none}.reqerr.on{display:block}
+.osheet{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:20;display:none;align-items:flex-end}.osheet.on{display:flex}.osheet .in{background:#fff;width:100%;border-radius:28px 28px 0 0;padding:14px 28px 40px}.osheet .hd{width:56px;height:4px;border-radius:2px;background:#C9CED6;margin:0 auto 18px}
+.osheet .apps{display:flex;gap:36px;border-top:1px solid #E3E8EF;padding-top:22px}.osheet .apps button{display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}.osheet .ico{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid #E3E8EF}
+.cam{position:absolute;inset:0;background:#000;z-index:25;display:none;flex-direction:column}.cam.on{display:flex}.cam .vf{flex:1;display:flex;align-items:center;justify-content:center;padding:24px;position:relative}.cam .bar{height:150px;display:flex;align-items:center;justify-content:space-around;padding:0 30px}
+.shutter{width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:#fff;box-shadow:inset 0 0 0 4px #000;cursor:pointer}.camicon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.15);border:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.fakedoc{width:250px;background:#F3EEDD;border-radius:4px;padding:18px 16px;font-family:"Times New Roman",serif;color:#3a3a3a;position:relative;overflow:hidden;transform:rotate(-2deg);box-shadow:0 6px 20px rgba(0,0,0,.5)}.fakedoc .tt{text-align:center;font-weight:700;font-size:13px;letter-spacing:.04em;margin:6px 0 12px}.fakedoc .ln{height:6px;background:#CFC6AE;border-radius:3px;margin:9px 0}.fakedoc .wm{position:absolute;left:-20px;top:46%;transform:rotate(-28deg);font:700 34px Inter,sans-serif;color:rgba(200,40,40,.28);letter-spacing:.12em;white-space:nowrap}
+.frame{position:absolute;inset:40px 30px;border:2px solid rgba(255,255,255,.6);border-radius:12px;pointer-events:none}
+.smodal{position:absolute;inset:0;background:rgba(20,28,40,.55);display:none;align-items:center;justify-content:center;z-index:15;padding:16px}.smodal.on{display:flex}.smodal .box{background:#fff;width:100%;border-radius:8px;padding:22px 18px 22px;display:flex;flex-direction:column;gap:18px}
+.stabs{display:flex;border-bottom:1px solid #E3E8EF}.stabs button{padding:10px 6px;font-size:13px;border:0;background:none;color:var(--grey);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;flex:auto}.stabs button.on{color:var(--blue);font-weight:700;border-bottom-color:var(--blue);background:#F2F6FF}
+.pwd{display:flex;align-items:center;border-bottom:1px solid #1B2430}.pwd input{flex:1;border:0;font:inherit;font-size:16px;padding:8px 0;background:transparent}.pwd input:focus{outline:0}
+.linkbtn{background:none;border:0;color:var(--blue);font:inherit;font-size:16px;font-weight:600;cursor:pointer;padding:12px 0;text-align:left}
 .bp,.bs{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
 .bp{background:var(--blue);color:#fff;border:0} .bs{background:#fff;color:var(--blue);border:1px solid var(--blue)}
 .bp[disabled]{background:#B7C0CC;cursor:default}
@@ -140,7 +157,7 @@ button{font-family:inherit}
    <span class="appic"><svg width="20" height="23" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#0068FF"/></svg></span>
    <span style="flex:1;min-width:0"><span class="h"><span>КИЇВ ЦИФРОВИЙ</span><span>зараз</span></span>
    <span class="tt" style="display:block">Марко скоро йде до школи</span>
-   <span class="b" style="display:block">Ми підібрали школу за місцем реєстрації Марка, де він має право на першочергове зарахування. Подайте заяву за кілька хвилин.</span></span>
+   <span class="b" style="display:block">Ми підібрали школу за місцем реєстрації Марка, де він має право на першочергове зарахування. Запишіть його до школи за кілька хвилин.</span></span>
   </button>
   <div class="hint">Натисніть на сповіщення</div>
  </section>
@@ -157,7 +174,7 @@ button{font-family:inherit}
    <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg><span>Свідоцтво про народження дитини<br><span style="font-size:13px;color:var(--grey)">можна поділитися через Дію</span></span></div>
    <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg>Медична довідка за формою № 086/о</div>
    <div class="need"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/></svg>Дія.Підпис або електронний підпис</div>
-   <p class="p" style="font-size:13px;color:var(--grey)">Заяви на першочергове зарахування приймають до 1 червня.</p>
+   <p class="p" style="font-size:13px;color:var(--grey)">Записатися з правом першочергового зарахування можна до 1 червня.</p>
   </div>
   <div class="kfoot"><button class="kbtn" onclick="openPortal()">Погоджуюсь</button></div>
   </div>
@@ -183,7 +200,7 @@ button{font-family:inherit}
      <label class="rad" id="optParentWrap"><input type="radio" name="alt" value="parent" onchange="altPick()"><span>Підібрати школу за моїм зареєстрованим місцем проживання<small>Підберемо школу, яка обслуговує адресу, де зареєстровані ви</small></span></label>
      <label class="rad"><input type="radio" name="alt" value="other" onchange="altPick()"><span>Обрати іншу школу<small>Вкажете адресу та оберете школу самостійно</small></span></label>
     </div>
-    <div class="btns"><button class="bp" id="schoolNext" onclick="schoolNext()">Далі</button></div>
+    <div class="btns"><button class="bp" id="schoolNext" onclick="schoolNext()">Продовжити</button></div>
    </div>
   </div>
  </section>
@@ -211,7 +228,7 @@ button{font-family:inherit}
      <div class="g2"><label class="fld">Будинок<input value="12"></label><label class="fld">Квартира<input value="34"></label></div>
      <div id="factDoc" style="display:none"><div style="font-size:15px;font-weight:600;margin-bottom:8px">Документ, що підтверджує місце проживання</div><div class="upz"></div></div>
     </div>
-    <div class="btns"><button class="bp" onclick="go('pick')">Далі</button><button class="bs" onclick="go('school')">Назад</button></div>
+    <div class="btns"><button class="bp" onclick="go('pick')">Продовжити</button><button class="bs" onclick="go('school')">Назад</button></div>
    </div>
   </div>
  </section>
@@ -230,7 +247,7 @@ button{font-family:inherit}
     <label class="fld" id="pickF">Виберіть школу<select id="pickSel" onchange="pickCheck()"><option value="">Виберіть школу</option><option value="dup">Ліцей № 1 (заяву на дитину вже подано)</option><option value="a">Гімназія № 2</option><option value="b">Ліцей № 3</option></select><span class="e" id="pickErr">Оберіть школу</span></label>
     <label class="chk"><input type="checkbox"><span>Вибрати школи поза межами території обслуговування</span></label>
     <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Ви можете ознайомитись з <a href="#" onclick="return false">мапою комунальних закладів загальної середньої освіти м. Києва</a>. Щоб переглянути інформацію про заклад, натисніть на його позначку на мапі.</span></div>
-    <div class="btns"><button class="bp" onclick="pickNext()">Далі</button><button class="bs" onclick="go('addr')">Назад</button></div>
+    <div class="btns"><button class="bp" onclick="pickNext()">Продовжити</button><button class="bs" onclick="go('addr')">Назад</button></div>
    </div>
   </div>
  </section>
@@ -260,16 +277,16 @@ button{font-family:inherit}
      <div class="g2"><label class="fld" id="serF">Серія<input id="ser" placeholder="I-ТВ"><span class="e">Вкажіть серію</span></label><label class="fld" id="numF">Номер<input id="num" placeholder="123456" inputmode="numeric"><span class="e">Вкажіть номер</span></label></div>
      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:600">Дата видачі</div>
       <div class="g3"><label class="fld">День<input id="cd" inputmode="numeric"></label><label class="fld">Місяць<select class="months" id="cm" data-sel=""></select></label><label class="fld">Рік<input id="cy" inputmode="numeric"></label></div></div>
-     <div id="certUpWrap"><div style="font-size:15px;font-weight:600;margin-bottom:8px">Копія свідоцтва про народження</div><div class="upz" id="upCert"></div></div>
+     <div id="certUpWrap"><div class="uplabel">Копія свідоцтва про народження</div><div class="upz" id="upCert"></div><div class="reqerr" id="errCert">Обов'язкове поле</div></div>
     </div>
 
     <div class="sep">
      <div class="h3" style="font-size:17px">Медична довідка</div>
-     <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Довідку за формою № 086/о видає сімейний лікар або педіатр. Сфотографуйте її або завантажте скан, на якому добре видно всі дані.</span></div>
-     <div><div style="font-size:15px;font-weight:600;margin-bottom:8px">Медична довідка за формою № 086/о</div><div class="upz" id="upMed"></div></div>
+     <div class="ban y"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Довідку за формою № 086/о видає сімейний лікар або педіатр. Її можна сфотографувати телефоном — головне, щоб добре було видно всі дані.</span></div>
+     <div><div class="uplabel">Копія медичної довідки за формою № 086/о</div><div class="upz" id="upMed"></div><div class="reqerr" id="errMed">Обов'язкове поле</div></div>
     </div>
     <div class="ban y" id="childErr" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Заповніть усі обов'язкові поля та додайте документи.</span></div>
-    <div class="btns"><button class="bp" onclick="childNext()">Далі</button><button class="bs" onclick="childBack()">Назад</button></div>
+    <div class="btns"><button class="bp" onclick="childNext()">Продовжити</button><button class="bs" onclick="childBack()">Назад</button></div>
    </div>
   </div>
  </section>
@@ -292,7 +309,7 @@ button{font-family:inherit}
      <p style="margin:0 0 12px">1. Свідоцтво про народження, серія <span id="pvSer">I-ТВ</span> № <span id="pvNum">482915</span>.<br>2. Медична довідка за формою № 086/о.</p>
      <div style="display:flex;justify-content:space-between"><span id="pvDate">19.11.2026</span><span>Руденко О. П.</span></div>
     </div>
-    <div class="btns"><button class="bp" onclick="openSign()">Підписати</button><button class="bs" onclick="go('child')">Назад</button></div>
+    <div class="btns stack"><button class="bs" onclick="go('child')">Назад</button><button class="bp" onclick="openSign()">Підписати та надіслати</button><button class="linkbtn" onclick="signLater()">Підписати пізніше</button></div>
    </div>
   </div>
  </section>
@@ -301,7 +318,7 @@ button{font-family:inherit}
  <section class="screen" id="cabinet">
   <div class="phead"></div>
   <div class="pmain">
-   <div style="border:1px dashed #9AA5B4;border-radius:8px;padding:10px 12px;font-size:12px;line-height:17px;color:var(--grey);margin-bottom:16px;background:#FAFBFC"><b style="color:var(--ink)">Примітка до прототипу.</b> Кнопка «До замовлених послуг» переводить користувача в особистий кабінет Порталу послуг, розділ «Замовлені послуги». Тут він бачить свою заяву та її статус.</div>
+   <div style="border:1px dashed #9AA5B4;border-radius:8px;padding:10px 12px;font-size:12px;line-height:17px;color:var(--grey);margin-bottom:16px;background:#FAFBFC"><b style="color:var(--ink)">Примітка до прототипу.</b> <span id="cabNote">Кнопка «До замовлених послуг» переводить користувача в особистий кабінет Порталу послуг, розділ «Замовлені послуги». Тут він бачить свою заяву та її статус.</span></div>
    <div class="crumb">Особистий кабінет / Мої послуги</div>
    <h1 class="ptitle">Замовлені послуги</h1>
    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
@@ -313,9 +330,9 @@ button{font-family:inherit}
     <div class="row"><span>Дата подання</span><b id="cabDate">19.11.2026</b></div>
     <div class="row"><span>Заклад освіти</span><b id="cabSchool">Ліцей № 1</b></div>
     <div class="row"><span>Дитина</span><b>Руденко Марко Олегович</b></div>
-    <div class="row"><span>Статус</span><b>Подано</b></div>
+    <div class="row"><span>Статус</span><b id="cabStatus">Подано</b></div>
    </div>
-   <div class="btns" style="margin-top:24px"><button class="bs" onclick="restart()">Пройти сценарій ще раз</button></div>
+   <div class="btns stack" style="margin-top:24px"><button class="bs" onclick="restart()">Пройти сценарій ще раз</button></div>
   </div>
  </section>
 
@@ -358,14 +375,28 @@ button{font-family:inherit}
   </div>
  </section>
 
-  <div class="modal" id="signModal"><div class="box" role="dialog" aria-label="Підписання">
-   <div style="font-size:18px;font-weight:600">Оберіть спосіб підпису</div>
-   <div class="tabs"><button onclick="signTab(0)">Файловий ключ</button><button onclick="signTab(1)">Апаратний ключ</button><button class="on" onclick="signTab(2)">Дія.Підпис</button></div>
-   <div id="signT0" style="display:none;flex-direction:column;gap:14px"><button class="up" onclick="this.querySelector('.l').textContent='Key-6.dat'"><span class="l">Оберіть файл ключа на своєму носії</span><span>Підтримуються формати: .jks, .pfx, .pk8, .zs2, .dat</span></button><label class="fld">Пароль<input type="password" value="12345678"></label></div>
+  <div class="smodal" id="signModal"><div class="box" role="dialog" aria-label="Підписання документів">
+   <div style="font-size:22px;padding-bottom:12px;border-bottom:1px solid #E3E8EF;margin:0 -18px;padding-left:18px">Підписання документів</div>
+   <div class="stabs"><button class="on" onclick="signTab(0)">Файловий ключ</button><button onclick="signTab(1)">Апаратний ключ</button><button onclick="signTab(2)">Дія.Підпис</button></div>
+   <div id="signT0" style="display:flex;flex-direction:column;gap:16px">
+    <div class="upbox" style="padding:20px 14px" id="keyBox"><span style="font-size:17px;color:var(--ink);line-height:24px">Перетягніть сюди файл ключа або <button class="lnk" style="color:var(--ink);font-size:17px" onclick="keyPicked()">оберіть його зі свого носія</button></span><span style="font-size:13px">Підтримуються формати: .jks, .pfx, .pk8, .zs2, .dat</span></div>
+    <div><div style="font-size:14px;color:var(--grey)">Пароль</div><div class="pwd"><input type="password" id="kpwd" placeholder="Введіть пароль ключа"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B2430" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg></div></div>
+    <div id="keyInfo" style="display:none;background:var(--soft);border-radius:6px;padding:12px;font-size:14px;line-height:20px">Ключ зчитано<br><b>Руденко Олена Петрівна</b><br><span style="color:var(--grey);font-size:13px">Кваліфікований надавач: визначено автоматично</span></div>
+   </div>
    <div id="signT1" style="display:none;font-size:14px;line-height:20px;color:var(--grey)">Підключіть апаратний ключ до телефона, щоб продовжити.</div>
-   <div id="signT2" style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:20px">Відкриється застосунок Дія. Підтвердіть підписання заяви і поверніться сюди.</div>
-   <div class="btns" style="margin:0"><button class="bp" onclick="doSign()">Підписати</button><button class="bs" onclick="closeSign()">Скасувати</button></div>
+   <div id="signT2" style="display:none;font-size:14px;line-height:20px">Відкриється застосунок Дія. Підтвердіть підписання заяви і поверніться сюди.</div>
+   <div style="display:flex;gap:12px"><button class="bs" style="flex:1" onclick="closeSign()">Скасувати</button><button class="bp" style="flex:1.4" id="signBtn" onclick="signAction()">Зчитати ключ</button></div>
   </div></div>
+  <div class="osheet" id="osheet" onclick="if(event.target===this)closePicker()"><div class="in"><div class="hd"></div><div class="apps">
+   <button onclick="pickPhoto()"><span class="ico" style="background:linear-gradient(#EEF0F3,#D9DDE3)"><svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><rect x="1" y="5" width="32" height="22" rx="5" fill="#2A2E36"/><rect x="11" y="1" width="12" height="6" rx="2" fill="#2A2E36"/><circle cx="17" cy="16" r="7.5" fill="#3B3F8F"/><circle cx="17" cy="16" r="4" fill="#9AA0FF"/></svg></span>Фото</button>
+   <button onclick="pickFiles()"><span class="ico" style="background:#fff"><svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><path d="M2 5a3 3 0 0 1 3-3h8l3 3h13a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#5B9BFF"/><path d="M2 10h30v13a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#7FB2FF"/></svg></span>Файли</button>
+  </div></div></div>
+  <div class="cam" id="cam">
+   <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 16px 0;color:#fff;font-size:14px"><button class="camicon" aria-label="Закрити камеру" onclick="camClose()" style="width:40px;height:40px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><span id="camHint">Наведіть камеру на документ</span><span style="width:40px"></span></div>
+   <div class="vf"><div class="frame" id="camFrame"></div><div class="fakedoc" id="camDoc"></div></div>
+   <div class="bar" id="camShoot"><span style="width:56px"></span><button class="shutter" aria-label="Зробити фото" onclick="camShot()"></button><span style="width:56px"></span></div>
+   <div class="bar" id="camConfirm" style="display:none"><button class="camicon" aria-label="Перезняти" onclick="camRetake()"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button class="camicon" aria-label="Додати фото" onclick="camOk()" style="width:72px;height:72px;background:#fff"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button><span style="width:56px"></span></div>
+  </div>
  </div>
 </div>
 <button class="scenbtn" aria-label="Сценарії" onclick="document.getElementById('sheet').classList.add('on')">☰</button>
@@ -382,8 +413,8 @@ const SCEN=[
 ];
 const NOTE='Батьків не знайдено в Київ Цифровому за телефоном — пуш не надсилаємо, у прототипі цього сценарію немає.';
 let S={scen:'main',school:'child',flow:'main',diia:false,files:{}};
-const LOGO='<div class="logo"><svg width="26" height="30" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#0068FF"/></svg><div>ПОРТАЛ ПОСЛУГ<small>KYIV DIGITAL</small></div></div><button class="iconbtn" aria-label="Меню"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>';
-document.querySelectorAll('.phead').forEach(h=>h.innerHTML=LOGO);
+const LOGO='<button class="iconbtn" aria-label="Меню"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="logo"><svg width="26" height="30" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#0068FF"/></svg><div>ПОРТАЛ ПОСЛУГ<small>KYIV.DIGITAL</small></div></div><button class="iconbtn" aria-label="Профіль" style="width:auto;gap:4px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18c1.5-2 3.3-3 5.5-3s4 1 5.5 3"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>';
+document.querySelectorAll('.phead').forEach(h=>{h.innerHTML=LOGO;const f=document.createElement('div');f.className='pfoot';f.innerHTML='<div class="logo" style="font-size:16px;line-height:18px"><svg width="34" height="40" viewBox="0 0 40 46" aria-hidden="true"><path d="M2 2h36v28c0 6-8 11-18 14C10 41 2 36 2 30z" fill="#fff"/><path d="M13 10h6v9l7-9h7l-8 10 8 12h-7l-7-10v10h-6z" fill="#1A2540"/></svg><div>ПОРТАЛ ПОСЛУГ<small>KYIV.DIGITAL</small></div></div><a href="#" onclick="return false">Міські послуги</a><a href="#" onclick="return false">Часті запитання</a>';h.parentNode.appendChild(f)});
 const M=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
 document.querySelectorAll('select.months').forEach(s=>{s.innerHTML='<option value=""></option>'+M.map(m=>`<option${m===s.dataset.sel?' selected':''}>${m}</option>`).join('')});
 const ICON_I=c=>`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>`;
@@ -394,13 +425,38 @@ function stepper(el,steps,cur){
 }
 document.querySelectorAll('.stepper[data-steps]').forEach(e=>stepper(e,e.dataset.steps.split('|'),+e.dataset.cur));
 // upload zones
+const UPICON='<svg width="30" height="34" viewBox="0 0 24 28" fill="none" stroke="#0068FF" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H5a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z"/><path d="M14 2v7h7"/><path d="M12 21v-8M8.5 16.5L12 13l3.5 3.5" stroke-linecap="round"/></svg>';
+const FNAMES={cert:'IMG_20261119_153712.jpg',med:'IMG_20261119_153840.jpg',fact:'IMG_20261119_154002.jpg'};
+let pickKey=null;
 function upz(el,key){
  const render=()=>{const f=S.files[key];
-  el.innerHTML=f?`<div class="file"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg><span>${f}</span><button class="iconbtn" aria-label="Видалити файл" style="width:36px;height:36px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6675" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></div>`
-  :`<button class="up"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v6"/><path d="M9 15h6"/></svg><span class="l">Сфотографуйте або завантажте файл</span><span>Максимальний розмір одного файлу: 1,0 МБ</span><span>Допустимі формати: JPG, PNG, PDF</span></button>`;
-  const b=el.querySelector('button');b.onclick=()=>{S.files[key]=f?null:({cert:'Свідоцтво.jpg',med:'Довідка_086о.jpg',fact:'Договір_оренди.pdf'}[key]);render()}};
+  el.innerHTML=`<div class="upbox">${UPICON}<button class="lnk">Завантажте файл зі свого носія</button><span class="drag">або перетягніть його сюди</span><span>Максимальний розмір одного файлу: 5.0 MB<br>Допустимі формати: JPG зображення, PNG зображення, PDF документ</span>`+
+   (f?`<div class="uptools"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B2430" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="6" height="16" rx="1"/><rect x="14" y="4" width="6" height="16" rx="1"/></svg></span><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B2430" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M4 15h16"/></svg></span></div>
+   <div class="uptbl"><div><input type="checkbox" aria-label="Вибрати всі"><b style="font-weight:500">Документ</b></div><div><input type="checkbox" aria-label="Вибрати файл"><span class="nm">${f}</span><button class="iconbtn" aria-label="Видалити файл" style="width:36px;height:36px" data-del="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6675" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></div></div>`:'')+`</div>`;
+  el.querySelector('.lnk').onclick=()=>openPicker(key);
+  el.querySelector('.upbox').onclick=e=>{if(e.target.closest('.uptbl')||e.target.closest('.lnk'))return;if(!S.files[key])openPicker(key)};
+  const d=el.querySelector('[data-del]');if(d)d.onclick=()=>{S.files[key]=null;render()};
+  const er=document.getElementById({cert:'errCert',med:'errMed'}[key]);if(er&&f)er.classList.remove('on');};
  render();el._r=render;
 }
+function openPicker(key){pickKey=key;document.getElementById('osheet').classList.add('on')}
+function closePicker(){document.getElementById('osheet').classList.remove('on')}
+function pickFiles(){closePicker();S.files[pickKey]=({cert:'svidotstvo.pdf',med:'dovidka_086o.pdf',fact:'dohovir.pdf'})[pickKey];refreshUp()}
+function pickPhoto(){closePicker();const c=document.getElementById('cam');c.classList.add('on');c.dataset.state='shoot';renderCam()}
+function renderCam(){const c=document.getElementById('cam'),st=c.dataset.state;
+ document.getElementById('camDoc').innerHTML=pickKey==='med'?
+  '<div class="tt">МЕДИЧНА ДОВІДКА<br>форма № 086/о</div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln"></div><div class="ln" style="width:60%"></div><div class="ln"></div><div class="ln" style="width:70%"></div><div style="display:flex;justify-content:flex-end;margin-top:14px"><div style="width:54px;height:54px;border-radius:50%;border:2px solid rgba(40,80,170,.5)"></div></div><div class="wm">ЗРАЗОК</div>'
+  :'<div style="text-align:center;font-size:10px">УКРАЇНА</div><div class="tt">СВІДОЦТВО<br>ПРО НАРОДЖЕННЯ</div><div class="ln"></div><div class="ln" style="width:75%"></div><div class="ln"></div><div class="ln" style="width:55%"></div><div class="ln"></div><div class="ln" style="width:85%"></div><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px"><span style="font-size:10px">Серія I-ТВ № 000000</span><div style="width:54px;height:54px;border-radius:50%;border:2px solid rgba(40,80,170,.5)"></div></div><div class="wm">ЗРАЗОК</div>';
+ document.getElementById('camFrame').style.display=st==='shoot'?'':'none';
+ document.getElementById('camShoot').style.display=st==='shoot'?'flex':'none';
+ document.getElementById('camConfirm').style.display=st==='confirm'?'flex':'none';
+ document.getElementById('camHint').textContent=st==='shoot'?'Наведіть камеру на документ':'Додати це фото?';
+}
+function camShot(){const c=document.getElementById('cam');c.dataset.state='confirm';renderCam()}
+function camRetake(){const c=document.getElementById('cam');c.dataset.state='shoot';renderCam()}
+function camClose(){document.getElementById('cam').classList.remove('on')}
+function camOk(){camClose();S.files[pickKey]=FNAMES[pickKey];refreshUp()}
+function refreshUp(){document.querySelectorAll('.upz').forEach(z=>z._r&&z._r())}
 upz(document.getElementById('upCert'),'cert');upz(document.getElementById('upMed'),'med');upz(document.querySelector('#factDoc .upz'),'fact');
 
 let cur='lock';
@@ -458,24 +514,32 @@ function childBack(){go(S.flow==='other'?'pick':'school')}
 function diiaShared(){S.diia=true;go('child')}
 function childNext(){
  let ok=true;[['serF','ser'],['numF','num']].forEach(([f,i])=>{const bad=!document.getElementById(i).value.trim();document.getElementById(f).classList.toggle('err',bad);if(bad)ok=false});
- if(!S.diia&&!S.files.cert)ok=false; if(!S.files.med)ok=false;
+ if(!S.diia&&!S.files.cert){ok=false;errCert.classList.add('on')} if(!S.files.med){ok=false;errMed.classList.add('on')}
  document.getElementById('childErr').style.display=ok?'none':'flex';
  if(ok)go('preview');
 }
-let tab=2;
-function signTab(n){tab=n;document.querySelectorAll('.tabs button').forEach((b,i)=>b.classList.toggle('on',i===n));[0,1,2].forEach(i=>document.getElementById('signT'+i).style.display=i===n?'flex':'none')}
-function openSign(){document.getElementById('signModal').classList.add('on')}
+let tab=0,keyRead=false;
+function signTab(n){tab=n;document.querySelectorAll('.stabs button').forEach((b,i)=>b.classList.toggle('on',i===n));[0,1,2].forEach(i=>document.getElementById('signT'+i).style.display=i===n?'flex':'none');updSignBtn()}
+function updSignBtn(){signBtn.textContent=tab===0&&!keyRead?'Зчитати ключ':'Підписати'}
+function keyPicked(){keyBox.innerHTML='<span style="font-size:15px;color:var(--ink)">Файл ключа:<br><b style="font-weight:500">Key-6.dat</b></span><button class="lnk" style="font-size:15px;opacity:.7" onclick="keyPicked()">Завантажити інший файл</button>';kpwd.value='12345678'}
+function signAction(){
+ if(tab===0&&!keyRead){if(!kpwd.value){kpwd.focus();return}keyRead=true;keyInfo.style.display='';updSignBtn();return}
+ if(tab===1)return;
+ doSign();
+}
+function openSign(){keyRead=false;keyInfo.style.display='none';kpwd.value='';keyBox.innerHTML='<span style="font-size:17px;color:var(--ink);line-height:24px">Перетягніть сюди файл ключа або <button class="lnk" style="color:var(--ink);font-size:17px" onclick="keyPicked()">оберіть його зі свого носія</button></span><span style="font-size:13px">Підтримуються формати: .jks, .pfx, .pk8, .zs2, .dat</span>';signTab(0);document.getElementById('signModal').classList.add('on')}
 function closeSign(){document.getElementById('signModal').classList.remove('on')}
 function doSign(){closeSign();document.getElementById('doneSchool').textContent=S.schoolName;
  if(tab===2)go('diiaSign');else{go('load2');setTimeout(()=>go('done'),900)}}
+function signLater(){S.draft=true;cabStatus.textContent='Чернетка';cabNote.textContent='«Підписати пізніше» зберігає заяву в чернетках особистого кабінету. Підписати її можна будь-коли до кінця прийому заяв.';cabSchool.textContent=S.schoolName||'';cabDate.textContent=pvDate.textContent;go('cabinet')}
 function reset(){S={scen:S.scen,school:'child',flow:'main',diia:false,files:{}};
  document.querySelectorAll('#child input:not([type=checkbox])').forEach(i=>{if(['ser','num','cd','cy'].includes(i.id))i.value=''});
  cm.value='';document.querySelectorAll('.upz').forEach(z=>z._r&&z._r());document.getElementById('childErr').style.display='none';
- document.querySelectorAll('.fld.err').forEach(f=>f.classList.remove('err'));document.getElementById('pickSel').value='';signTab(2);}
+ document.querySelectorAll('.fld.err').forEach(f=>f.classList.remove('err'));document.querySelectorAll('.reqerr').forEach(e=>e.classList.remove('on'));closePicker();camClose();document.getElementById('pickSel').value='';signTab(0);}
 function start(id){S.scen=id;reset();go('lock');document.getElementById('sheet').classList.remove('on');
  document.querySelectorAll('.scen button').forEach(b=>b.classList.toggle('act',b.dataset.id===id));
  const n=document.getElementById('phone');}
-function toCabinet(){cabSchool.textContent=S.schoolName||'';cabDate.textContent=pvDate.textContent;go('cabinet')}
+function toCabinet(){cabStatus.textContent='Подано';cabNote.textContent='Кнопка «До замовлених послуг» переводить користувача в особистий кабінет Порталу послуг, розділ «Замовлені послуги». Тут він бачить свою заяву та її статус.';cabSchool.textContent=S.schoolName||'';cabDate.textContent=pvDate.textContent;go('cabinet')}
 function restart(){start(S.scen)}
 ['scenList','scenList2'].forEach(id=>{document.getElementById(id).innerHTML=SCEN.map(s=>`<button data-id="${s.id}" onclick="start('${s.id}')"><b>${s.t}</b>${s.d}</button>`).join('')+`<div class="note">${NOTE}</div>`});
 start('main');
