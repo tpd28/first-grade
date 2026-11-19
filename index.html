@@ -297,6 +297,28 @@ button{font-family:inherit}
   </div>
  </section>
 
+ <!-- PORTAL: CABINET -->
+ <section class="screen" id="cabinet">
+  <div class="phead"></div>
+  <div class="pmain">
+   <div style="border:1px dashed #9AA5B4;border-radius:8px;padding:10px 12px;font-size:12px;line-height:17px;color:var(--grey);margin-bottom:16px;background:#FAFBFC"><b style="color:var(--ink)">Примітка до прототипу.</b> Кнопка «До замовлених послуг» переводить користувача в особистий кабінет Порталу послуг, розділ «Замовлені послуги». Тут він бачить свою заяву та її статус.</div>
+   <div class="crumb">Особистий кабінет / Мої послуги</div>
+   <h1 class="ptitle">Замовлені послуги</h1>
+   <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+    <button class="bs" style="width:auto;min-height:40px;padding:0 14px;font-size:14px">Оновити</button>
+    <button class="bs" style="width:auto;min-height:40px;padding:0 14px;font-size:14px">Фільтри</button>
+   </div>
+   <div class="card" style="padding:4px 16px">
+    <div class="row"><span>Послуга</span><b>Запис дитини до 1 класу школи</b></div>
+    <div class="row"><span>Дата подання</span><b id="cabDate">19.11.2026</b></div>
+    <div class="row"><span>Заклад освіти</span><b id="cabSchool">Ліцей № 1</b></div>
+    <div class="row"><span>Дитина</span><b>Руденко Марко Олегович</b></div>
+    <div class="row"><span>Статус</span><b>Подано</b></div>
+   </div>
+   <div class="btns" style="margin-top:24px"><button class="bs" onclick="restart()">Пройти сценарій ще раз</button></div>
+  </div>
+ </section>
+
  <!-- DIIA: share -->
  <section class="screen" id="diiaShare"><div class="diiascr">
   <div class="diiatop"><span>Дія</span><span style="font-size:13px;font-weight:500">Запит на документи</span></div>
@@ -331,7 +353,8 @@ button{font-family:inherit}
    <h1 class="h1m">Вашу заяву надіслано</h1>
    <p class="p" style="color:var(--grey)">Заяву передано до школи. Результат розгляду надійде в застосунок Київ Цифровий, на електронну пошту та в особистий кабінет.</p>
    <div class="card" style="width:100%;text-align:left"><div class="row"><span>Заклад освіти</span><b id="doneSchool">[Назва закладу освіти]</b></div><div class="row"><span>Дитина</span><b>Руденко Марко Олегович</b></div><div class="row"><span>Статус</span><b>Подано</b></div></div>
-   <button class="bp" onclick="restart()">До замовлених послуг</button>
+   <button class="bp" onclick="toCabinet()">До замовлених послуг</button>
+   <div style="font-size:12px;line-height:17px;color:var(--grey)">Відкриється особистий кабінет Порталу послуг, розділ «Замовлені послуги»</div>
   </div>
  </section>
 
@@ -452,6 +475,7 @@ function reset(){S={scen:S.scen,school:'child',flow:'main',diia:false,files:{}};
 function start(id){S.scen=id;reset();go('lock');document.getElementById('sheet').classList.remove('on');
  document.querySelectorAll('.scen button').forEach(b=>b.classList.toggle('act',b.dataset.id===id));
  const n=document.getElementById('phone');}
+function toCabinet(){cabSchool.textContent=S.schoolName||'';cabDate.textContent=pvDate.textContent;go('cabinet')}
 function restart(){start(S.scen)}
 ['scenList','scenList2'].forEach(id=>{document.getElementById(id).innerHTML=SCEN.map(s=>`<button data-id="${s.id}" onclick="start('${s.id}')"><b>${s.t}</b>${s.d}</button>`).join('')+`<div class="note">${NOTE}</div>`});
 start('main');
